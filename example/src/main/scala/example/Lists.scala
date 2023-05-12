@@ -47,10 +47,6 @@ object Lists:
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
   def max(xs: List[Int]): Int =
-    if (xs.isEmpty) {
-      throw new NoSuchElementException()
-    }
-
     @tailrec
     def max(ys: List[Int], currentMax: Int): Int =
       ys match
@@ -61,4 +57,7 @@ object Lists:
           else
             max(next, currentMax)
 
-    max(xs.tail, xs.head)
+    if xs.isEmpty then
+      throw new NoSuchElementException
+    else
+      max(xs.tail, xs.head)
